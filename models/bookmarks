@@ -1,0 +1,18 @@
+ const mongoose = require('mongoose');
+ const Schema = mongoose.Schema;
+ const bookmarkSchema = new Schema({
+ title: {
+    type: String,
+    required: true
+}
+,url: {
+    required: true,
+    type: String,
+    validate: {
+        validator: function(v) {
+          return /https?:\/\//.test(v);    
+        }
+    }
+}
+});
+module.exports = mongoose.model('Bookmark', bookmarkSchema);
